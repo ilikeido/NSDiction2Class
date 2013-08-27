@@ -2,46 +2,46 @@ NSDiction2Class
 ===============
 Demo.m
 
-#import "NSDictionary+NSDictionary2Object.h"
+    #import "NSDictionary+NSDictionary2Object.h"
 
-@interface Child : NSObject
+    @interface Child : NSObject
 
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,assign) int age;
+    @property(nonatomic,strong) NSString *name;
+    @property(nonatomic,assign) int age;
 
-@end
+    @end
 
-@implementation Child
-@end
+    @implementation Child
+    @end
 
-@interface Parent : NSObject
+    @interface Parent : NSObject
 
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,strong) NSArray *children;
+    @property(nonatomic,strong) NSString *name;
+    @property(nonatomic,strong) NSArray *children;
 
-@end
+    @end
 
-@implementation Parent
+    @implementation Parent
 
-+(Class)__childrenClass{
-    return [Child class];
-}
+    +(Class)__childrenClass{
+        return [Child class];
+    }
 
-@end
+    @end
 
-@implementation Demo
+    @implementation Demo
 
--(void)test{
-    NSArray *childrenDict = [NSArray arrayWithObject:
+    -(void)test{
+        NSArray *childrenDict = [NSArray arrayWithObject:
                                 [NSDictionary dictionaryWithObjectsAndKeys:@"kitty",@"name",@12,@"age", nil]
                          ];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:childrenDict,@"children",@"jonson",@"name",nil];
-    Parent *parent = [dict objectByClass:[Parent class]];
-    NSLog(@"parent name:%@",parent.name);
-    for (Child *child in parent.children) {
-        NSLog(@"name:%@ , age:%d",child.name,child.age);
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:childrenDict,@"children",@"jonson",@"name",nil];
+        Parent *parent = [dict objectByClass:[Parent class]];
+        NSLog(@"parent name:%@",parent.name);
+        for (Child *child in parent.children) {
+            NSLog(@"name:%@ , age:%d",child.name,child.age);
+        }
     }
-}
 
-@end
+    @end
 
